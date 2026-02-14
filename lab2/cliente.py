@@ -3,6 +3,7 @@ import json
 import grpc
 import task_manager_pb2
 import task_manager_pb2_grpc
+import uvicorn
 from google.protobuf.json_format import MessageToJson
 
 from fastapi import FastAPI
@@ -77,3 +78,4 @@ def delete_task(id: int):
         return "Tarefa apagada"
     except grpc.RpcError as e:
         print(e.details(), flush=True)
+uvicorn.run(app, host="0.0.0.0", port=8000)
